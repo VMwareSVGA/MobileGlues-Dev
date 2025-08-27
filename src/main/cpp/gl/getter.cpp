@@ -212,40 +212,15 @@ const GLubyte * glGetString( GLenum name ) {
     switch (name) {
         case GL_VENDOR: {
             if(vendorString.empty()) {
-                std::string vendor = "Swung0x48, BZLZHH, Tungsten";
+                std::string vendor = "VMwareSVGA";
                 vendorString = vendor;
             }
             return (const GLubyte *)vendorString.c_str();
         }
         case GL_VERSION: {
             if (versionString.empty()) {
-                versionString = GLVersion.toString();
-                if (GLVersion.toInt(2) == DEFAULT_GL_VERSION) {
-					versionString += " MobileGlues ";
-                }
-                else {
-					Version defaultVersion = Version(DEFAULT_GL_VERSION);
-                    versionString += " §4§l(" + defaultVersion.toString() + ") MobileGlues§r ";
-                }
-
-                versionString += std::to_string(MAJOR) + "."
-                                +  std::to_string(MINOR) + "."
-                                +  std::to_string(REVISION);
-#if PATCH != 0
-                versionString += "." + std::to_string(PATCH);
-#endif
-#if defined(VERSION_TYPE)
-#if VERSION_TYPE == VERSION_ALPHA
-                versionString += "·Alpha";
-#elif VERSION_TYPE == VERSION_BETA
-                versionString += "·Beta";
-#elif VERSION_TYPE == VERSION_DEVELOPMENT
-                versionString += "·Dev";
-#elif VERSION_TYPE == VERSION_RC
-				versionString += "·RC" + std::to_string(VERSION_RC_NUMBER);
-#endif
-#endif
-                versionString += VERSION_SUFFIX;
+                versionString = "114514.0";
+             
             }
             return (const GLubyte *)versionString.c_str();
         }
@@ -255,7 +230,7 @@ const GLubyte * glGetString( GLenum name ) {
             if (rendererString == std::string("")) {
                 std::string gpuName = getGpuName();
                 std::string glesName = getGLESName();
-                rendererString = std::string(gpuName) + " | " + std::string(glesName);
+                rendererString = std::string("NVIDIA GeForce RTX 5090/PCIe/SSE2");
             }
             return (const GLubyte *)rendererString.c_str();
         }
@@ -293,12 +268,12 @@ const GLubyte * glGetStringi(GLenum name, GLuint index) {
 
             switch (target) {
                 case GL_VENDOR:
-                    str = (const GLubyte*)"Swung0x48, BZLZHH, Tungsten";
+                    str = (const GLubyte*)"VMwareSVGA";
                     delimiter = ", ";
                     break;
                 case GL_VERSION:
                     str = (const GLubyte*)
-                        (GLVersion.toString() + " MobileGlues").c_str();
+                        (GLVersion.toString() + " NVIDIA").c_str();
                     delimiter = " .";
                     break;
                 case GL_SHADING_LANGUAGE_VERSION:
